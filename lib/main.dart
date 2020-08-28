@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import './widget/user_transaction.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -20,9 +22,10 @@ class MyHomePage extends StatelessWidget {
         title: Text('My Personal Expenses'),
         backgroundColor: Colors.redAccent[400],
       ),
-      body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.start,
+      body: SingleChildScrollView(
+        child: Column(
+          //mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Container(
               width: double.infinity,
@@ -32,15 +35,10 @@ class MyHomePage extends StatelessWidget {
                 color: Colors.red[400],
               ),
             ),
-            Card(
-              child: Text('LIST OF TX'),
-              color: Colors.redAccent[400],
-            ),
-            Card(
-              child: Text('LIST OF TX'),
-              color: Colors.redAccent[400],
-            ),
-          ]),
+            UserTransaction(),
+          ],
+        ),
+      ),
     );
   }
 }
