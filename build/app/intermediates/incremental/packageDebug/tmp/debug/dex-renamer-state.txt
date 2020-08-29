@@ -1,0 +1,4 @@
+#Sat Aug 29 01:33:24 WAT 2020
+base.0=/Users/yoke/Documents/Flutter/My-Expenses-App/build/app/intermediates/dex/debug/mergeDexDebug/out/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
