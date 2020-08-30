@@ -60,7 +60,28 @@ class _MyHomePageState extends State<MyHomePage> {
     //   title: 'New bag',
     //   amount: 39.99,
     //   date: DateTime.now(),
+      
     // ),
+    //     Transaction(
+    //   id: 'ti',
+    //   title: 'New Shoes',
+    //   amount: 69.99,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: 'ti',
+    //   title: 'New shirt',
+    //   amount: 19.99,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: 'ti',
+    //   title: 'New bag',
+    //   amount: 39.99,
+    //   date: DateTime.now(),
+      
+    // ),
+
   ];
 
   List<Transaction> get _recentTransactions {
@@ -71,12 +92,13 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  void _addNewTransaction(String txTitle, double txAmount) {
+  void _addNewTransaction(
+      String txTitle, double txAmount, DateTime chosenDate) {
     final newTx = Transaction(
       id: DateTime.now().toString(),
       title: txTitle,
       amount: txAmount,
-      date: DateTime.now(),
+      date: chosenDate,
     );
 
     setState(() {
@@ -84,11 +106,23 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _deleteTransaction(String id) {
+    setState(() {
+      _userTransaction.removeWhere((tx) {
+        return tx.id == id;
+      });
+    });
+  }
+
   void _startAtNewTransaction(BuildContext ctx) {
     showModalBottomSheet(
         context: ctx,
         builder: (_) {
-          return NewTransaction(_addNewTransaction);
+          return GestureDetector(
+            child: NewTransaction(_addNewTransaction),
+            onTap: () {},
+            behavior: HitTestBehavior.opaque,
+          );
         });
   }
 
@@ -110,7 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Chart(_recentTransactions),
-            TransactionList(_userTransaction),
+            TransactionList(_userTransaction, _deleteTransaction),
           ],
         ),
       ),
